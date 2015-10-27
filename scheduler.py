@@ -1,8 +1,11 @@
 import sys
 import json
 
-def parse_json(content):
-	print content
+def parse_content(content):
+	try:
+		classes = json.load(content)
+	except:
+		exit("Error: JSON File cannot be parsed.")
 
 
 if __name__ == '__main__':
@@ -19,4 +22,4 @@ if __name__ == '__main__':
 	except IOError as e:
 		exit("Error: File {filename} cannot be opened.")
 
-	parse_json(content)
+	parse_content(content)
