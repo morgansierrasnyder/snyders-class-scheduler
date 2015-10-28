@@ -1,11 +1,41 @@
 import sys
 import json
 
-def parse_content(content):
+'''
+Parse JSON input file and build class data structure
+'''
+def parse_json_build_dict(content):
+
 	try:
-		classes = json.load(content)
+		classes = json.loads(content)
 	except:
-		exit("Error: JSON File cannot be parsed.")
+		exit("Error: File cannot be parsed as JSON.")
+
+	classDict = {}
+	for clazz in classes:
+		clazz['isScheduled'] = 0
+		classDict[clazz['name']] = clazz
+	
+	schedule_classes(classDict)
+
+'''
+Schedule classes via a recursive DFS over all connected components
+'''
+def schedule_classes(classDict):
+
+	def _schedule(clazz):
+
+		if clazz['isScheduled']:
+			return
+		if len(clazz['prerequisites']):
+			for prereq in clazz['prerequisites']:
+				_schedule(classDict[prereq])
+
+		clazz['isScheduled'] = 1
+		print clazz['name']
+
+	for clazz in classDict.values():
+		_schedule(clazz)
 
 
 if __name__ == '__main__':
@@ -22,4 +52,4 @@ if __name__ == '__main__':
 	except IOError as e:
 		exit("Error: File {filename} cannot be opened.")
 
-	parse_content(content)
+	parse_json_build_dict(content)
