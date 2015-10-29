@@ -4,7 +4,7 @@ from StringIO import StringIO
 
 sys.path.append('../src')
 
-import scheduler
+import scheduler_script
 
 def get_file_content(filename):
 	try:
@@ -62,14 +62,6 @@ class SchedulerTests(unittest.TestCase):
 
 		self.assertEqual(str(self.out.getvalue()),
 			"Chemistry\nBiology\nOrganic Chemistry\nBiochemistry\nMicrobiology\nPathology\n")
-
-	def test_unexpected_format_throws_error(self):
-
-		data = get_file_content('math-invalid-format.json')
-		try:
-			scheduler.schedule_classes(data)
-		except:
-			self.assertEqual(str(self.err.getvalue()), "Error: File data is formatted incorrently.")
 
 
 if __name__ == "__main__":

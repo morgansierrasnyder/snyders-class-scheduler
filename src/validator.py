@@ -11,7 +11,6 @@ def check_format(classDict):
 			return 0
 	return 1
 
-
 '''
 Validate that all listed prerequisites exist
 '''

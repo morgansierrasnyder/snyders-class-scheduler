@@ -5,11 +5,11 @@ import json
 import validator
 
 '''
-Data validation switches
+Data validation flags
 '''
-FORMAT_CHECK = 1 # If 1, check for correct format of JSON datastructure
-EXIST_CHECK = 1 # If 1, check for invalid prerequisites in JSON
-CYCLE_CHECK = 1 # If 1, check for cyclical relationships in JSON
+FORMAT_CHECK = 0 # If 1, check for correct format of JSON datastructure
+EXIST_CHECK = 0 # If 1, check for invalid prerequisites in JSON
+CYCLE_CHECK = 0 # If 1, check for cyclical relationships in JSON
 
 '''
 Parse JSON input file and build class data structure
@@ -68,8 +68,7 @@ def schedule_classes(class_data):
 	for clazz in class_dict.values():
 		_schedule(clazz)
 
-
-if __name__ == '__main__':
+def main():
 
 	if len(sys.argv) < 2:
 		exit("Error: No argument provided.")
@@ -85,3 +84,7 @@ if __name__ == '__main__':
 		exit("Error: File " + filename + " cannot be opened.")
 
 	schedule_classes(class_data)
+
+if __name__ == '__main__':
+
+	main()
