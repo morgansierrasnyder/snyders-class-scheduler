@@ -1,4 +1,4 @@
-# Snyder's Class Scheduler
+# Class Scheduler
 
 **Description**: This application will print a class schedule ordering that is consistent with the rules of class prerequisites (i.e. you cannot take a course before you take its prerequisite)
 
@@ -19,14 +19,15 @@ Python 2
 	$ ./scheduler test/premed.json
 	```
 4. This should elicit the following output:
-	```
-	Chemistry
-	Biology
-	Organic Chemistry
-	Biochemistry
-	Microbiology
-	Pathology
-	```
+
+```
+Chemistry
+Biology
+Organic Chemistry
+Biochemistry
+Microbiology
+Pathology
+```
 
 ## Usage
 
