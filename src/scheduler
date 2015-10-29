@@ -21,12 +21,7 @@ def parse_and_validate_json(content):
 	except:
 		exit("Error: File cannot be parsed as JSON.")
 
-	classDict = {}
-	for clazz in classJSON:
-		clazz['isScheduled'] = 0
-		classDict[clazz['name']] = clazz
-	
-	schedule_classes(classDict)
+	classDict = _build_class_dict(classes)
 
 '''
 Build a dict (map) data structure from class information

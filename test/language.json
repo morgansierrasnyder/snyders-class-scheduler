@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Spanish 1",
+        "prerequisites": []
+    },
+    {
+        "name": "Spanish 2",
+        "prerequisites": ["Spanish 1"]
+    },
+    {
+        "name": "Spanish 3",
+        "prerequisites": ["Spanish 1", "Spanish 2"]
+    },
+    {
+        "name": "German 1",
+        "prerequisites": []
+    },
+    {
+        "name": "German 2",
+        "prerequisites": ["German 1"]
+    },
+    {
+        "name": "German 3",
+        "prerequisites": ["German 1", "German 2"]
+    }
+]

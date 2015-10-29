@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Chemistry",
+        "prerequisites": []
+    },
+    {
+        "name": "Biology",
+        "prerequisites": []
+    },
+    {
+        "name": "Organic Chemistry",
+        "prerequisites": ["Chemistry", "Biology"]
+    },
+    {
+        "name": "Biochemistry",
+        "prerequisites": ["Chemistry", "Biology"]
+    },
+    {
+        "name": "Microbiology",
+        "prerequisites": ["Organic Chemistry"]
+    },
+    {
+        "name": "Pathology",
+        "prerequisites": ["Biochemistry"]
+    }
+]
