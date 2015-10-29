@@ -1,6 +1,6 @@
 # Snyder's Class Scheduler
 
-**Description**: This application will produce a class schedule ordering that is consistent with the rules of class prerequisites (i.e. you cannot take a course before you take its prerequisite)
+**Description**: This application will print a class schedule ordering that is consistent with the rules of class prerequisites (i.e. you cannot take a course before you take its prerequisite)
 
 ## Dependencies
 
@@ -40,13 +40,15 @@ The JSON input files should follow this general format:
 ## Security
 
 Depending on the source of your data files, you may require data validation.
+
 If you created the files, they are surely flawless.
+
 If you didn't, it may be good to check that they are correctly formatted, contain valid prerequisites, and do not contain cyclical dependencies. To do so, turn on the data validation flags at the top of src/scheduler_script.py by setting them to 1:
 
 ```
-10	FORMAT_CHECK = 1 # If 1, check for correct format of JSON datastructure
-11	EXIST_CHECK = 1 # If 1, check for invalid prerequisites in JSON
-12	CYCLE_CHECK = 1 # If 1, check for cyclical relationships in JSON
+FORMAT_CHECK = 1 # If 1, check for correct format of JSON datastructure
+EXIST_CHECK = 1 # If 1, check for invalid prerequisites in JSON
+CYCLE_CHECK = 1 # If 1, check for cyclical relationships in JSON
 ```
 
 Please note that turning on these flags will increase the runtime of the application.
@@ -69,7 +71,9 @@ For each class:
 ```
 
 Given that the input data uses adjacency lists to store information about prerequisties, the runtime of this solution is
-**O(V + E)**,
+
+**O(V + E)**
+
 where V represents the number of classes, and E represents the number of class <> prerequisite relationships
 
 ## Known issues
