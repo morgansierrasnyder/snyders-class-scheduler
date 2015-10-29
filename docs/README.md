@@ -1,82 +1,89 @@
 # Snyder's Class Scheduler
 
-**Description**:  Put a meaningful, short, plain-language description of what
-this project is trying to accomplish and why it matters.
-Describe the problem(s) this project solves.
-Describe how this software can improve the lives of its audience.
-
-Other things to include:
-
-  - **Technology stack**: Indicate the technological nature of the software, including primary programming language(s) and whether the software is intended as standalone or as a module in a framework or other ecosystem.
-  - **Status**:  Alpha, Beta, 1.1, etc. It's OK to write a sentence, too. The goal is to let interested people know where this project is at. This is also a good place to link to the [CHANGELOG](CHANGELOG.md).
-  - **Links to production or demo instances**
-  - Describe what sets this apart from related-projects. Linking to another doc or page is OK if this can't be expressed in a sentence or two.
-
-
-**Screenshot**: If the software has visual components, place a screenshot after the description; e.g.,
-
-![](https://raw.githubusercontent.com/cfpb/open-source-project-template/master/screenshot.png)
-
+**Description**: This application will produce a class schedule ordering that is consistent with the rules of class prerequisites (i.e. you cannot take a course before you take its prerequisite)
 
 ## Dependencies
 
-Describe any dependencies that must be installed for this software to work.
-This includes programming languages, databases or other storage mechanisms, build tools, frameworks, and so forth.
-If specific versions of other software are required, or known not to work, call that out.
+Python 2
 
-## Installation
+## Getting Started
 
-Detailed instructions on how to install, configure, and get the project running.
-This should be frequently tested to ensure reliability. Alternatively, link to
-a separate [INSTALL](INSTALL.md) document.
-
-## Configuration
-
-If the software is configurable, describe it in detail, either here or in other documentation to which you link.
+1. Download and unzip snyders_class_scheduler.zip
+2. Open Terminal or Command Prompt, and navigate to the top level directory
+3. Ensure the application has permission to run as an executable by entering:
+```
+	$ chmod +x scheduler
+```
+3. Attempt to run the scheduler on one of the test files:
+```
+	$ ./scheduler test/premed.json
+```
 
 ## Usage
 
-Show users how to use the software.
-Be specific.
-Use appropriate formatting when showing code snippets.
+Now, you can run the scheduler on any JSON file containing correctly formatted class data, by passing the filepath/filename as the argument to the ./scheduler command. Only one file at a time, please!
 
-## How to test the software
+The JSON input files should follow this general format:
 
-If the software includes automated tests, detail how to run those tests.
+```
+[
+    {
+        "name": "Class 1",
+        "prerequisites": []
+    },
+    {
+        "name": "Class 2",
+        "prerequisites": ["Class 1"]
+    }
+]
+```
+## Security
+
+Depending on the source of your data files, you may require data validation.
+If you created the files, they are surely flawless.
+If you didn't, it may be good to check that they are correctly formatted, contain valid prerequisites, and do not contain cyclical dependencies. To do so, turn on the data validation flags at the top of src/scheduler_script.py by setting them to 1:
+
+```
+10	FORMAT_CHECK = 1 # If 1, check for correct format of JSON datastructure
+11	EXIST_CHECK = 1 # If 1, check for invalid prerequisites in JSON
+12	CYCLE_CHECK = 1 # If 1, check for cyclical relationships in JSON
+```
+
+Please note that turning on these flags will increase the runtime of the application.
+
+## Testing
+
+1. Navigate to the test/ directory
+2. Run $ python scheduler_tests.py to launch the SchedulerTests
+
+In addition, there is a collection of both valid and invalid JSON data files in the test/ directory that can be used to test the command line output empirically.
+
+## Performance Analysis
+
+The scheduling algorithm used in this application is a recursive depth-first search over all connected components of the class "tree":
+```
+For each class:
+	If this class was already scheduled, continue
+	If this class has prerequisites, recurse to schedule those first
+	schedule this class
+```
+
+Given that the input data uses adjacency lists to store information about prerequisties, the runtime of this solution is
+**O(V + E)**,
+where V represents the number of classes, and E represents the number of class <> prerequisite relationships
 
 ## Known issues
 
-Document any known significant shortcomings with the software.
+Checking for cyclical dependencies with the CYCLE_CHECK flag on is only supported for first order cycles. For example, when Class 1 has prerequisite Class 2 and Class 2 has prerequisite Class 1.
+
+Cycle checking at any depth will be supported in version 2.0!
 
 ## Getting help
 
-Instruct users how to get help with this software; this might include links to an issue tracker, wiki, mailing list, etc.
-
-**Example**
-
-If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker.
-
-## Getting involved
-
-This section should detail why people should get involved and describe key areas you are
-currently focusing on; e.g., trying to get feedback on features, fixing certain bugs, building
-important pieces, etc.
-
-General instructions on _how_ to contribute should be stated with a link to [CONTRIBUTING](CONTRIBUTING.md).
-
-
-----
-
-## Open source licensing info
-1. [TERMS](TERMS.md)
-2. [LICENSE](LICENSE)
-3. [CFPB Source Code Policy](https://github.com/cfpb/source-code-policy/)
-
-
-----
+Email me at m.sierrasnyder@gmail.com!
 
 ## Credits and references
 
-1. Projects that inspired you
-2. Related projects
-3. Books, papers, talks, or other sources that have meaningful impact or influence on this project
+1. Clever
+2. Guido van Rossum
+3. Siddhartha Gautama
