@@ -11,22 +11,22 @@ Python 2
 1. Download and unzip snyders_class_scheduler.zip
 2. Open Terminal or Command Prompt, and navigate to the top level directory
 3. Ensure the application has permission to run as an executable by entering:
-```
+	```
 	$ chmod +x scheduler
-```
+	```
 3. Attempt to run the scheduler on one of the test files:
-```
+	```
 	$ ./scheduler test/premed.json
-```
+	```
 4. This should elicit the following output:
-```
+	```
 	Chemistry
 	Biology
 	Organic Chemistry
 	Biochemistry
 	Microbiology
 	Pathology
-```
+	```
 
 ## Usage
 
