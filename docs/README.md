@@ -18,6 +18,15 @@ Python 2
 ```
 	$ ./scheduler test/premed.json
 ```
+4. This should elicit the following output:
+```
+	Chemistry
+	Biology
+	Organic Chemistry
+	Biochemistry
+	Microbiology
+	Pathology
+```
 
 ## Usage
 
@@ -70,11 +79,7 @@ For each class:
 	schedule this class
 ```
 
-Given that the input data uses adjacency lists to store information about prerequisties, the runtime of this solution is
-
-**O(V + E)**
-
-where V represents the number of classes, and E represents the number of class <> prerequisite relationships
+Given that the input data uses adjacency lists to store information about prerequisties, the runtime of this solution is **O(V + E)**, where V is equal to the number of classes, and E is equal to the number of class <> prerequisite relationships
 
 ## Known issues
 
